@@ -22,10 +22,11 @@ public class Student {
 	}
 	
 	public int missingGrade() {
+		int missingGrade = 0;
 		int finalGrade = grade1 + grade2 + grade3;
-		if ( finalGrade < 60) {
-			int missingGrade = 60 - finalGrade;
+		if (finalGrade < 60) {
+			missingGrade = 60 - finalGrade;
 		}
-		return missingGrade();
+		return missingGrade;
 	}
 }

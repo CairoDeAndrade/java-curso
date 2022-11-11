@@ -28,9 +28,9 @@ public class Program {
 		
 		student.gradeChecking();
 		
-		System.out.printf("Final grade of %s is :", name + student.finalGrade());
+		System.out.printf("Final grade of %s is : %s", name, student.finalGrade());
 		if (student.finalGrade() >= 60) {
-			System.out.println("Pass!");
+			System.out.printf("Pass!");
 		}
 		else {
 			System.out.println("Failed! You need " + student.missingGrade()
