@@ -39,7 +39,7 @@ public class Program {
 		}
 		bankAccount.showData(balance);
 	
-		System.out.println("Do you want to make a withdraw?(yes/no");
+		System.out.println("Do you want to make a withdraw?(yes/no)");
 		answer = sc.next();
 		if (answer.equals("yes")) {
 			System.out.println("Enter how much you want to withdraw: ");

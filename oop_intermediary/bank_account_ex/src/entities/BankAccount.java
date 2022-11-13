@@ -5,7 +5,7 @@ public class BankAccount {
 	protected String name;
 	public double innitialDeposit;
 	private double balance;
-	private static final double tax = 5;
+	private static final double tax = 5.0;
 	
 //	Constructors
 	public BankAccount(int accountNumber, String name, double innitialDeposit) {
@@ -54,7 +54,7 @@ public class BankAccount {
 	}
 	
 	public double withdraw(double quantity) {
-		return (balance - quantity) - tax;
+		return quantity + tax;
 	}
 	
 	public void showData(double balance) {
