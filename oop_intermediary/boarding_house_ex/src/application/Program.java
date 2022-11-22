@@ -14,10 +14,10 @@ public class Program {
 		Integer roomNumber;
 		
 		System.out.println("Here in the boarding house you can rent your room!");
-		Integer roomsNum = 10;
-		System.out.println("The total number of rooms is " + roomsNum);
+		Integer rooms = 10;
+		System.out.println("The total number of rooms is " + rooms);
 		
-		Student[] vect = new Student[roomsNum];
+		Student[] vect = new Student[rooms];
 		System.out.println("Do you want to rent a room?(yes/no)");
 		String answer = sc.next();
 		if (answer.equals("yes")) {
@@ -36,12 +36,18 @@ public class Program {
 				vect[roomNumber] = new Student(name, mail);
 			}
 			
-			for (int i = 0; i < num; i++) {
-				if (vect[i] != null) {
-					System.out.print("busy rooms:");
-					System.out.print(vect.getName());
+			int i = 0;
+			System.out.println("busy rooms:");
+			for (Student obj : vect) {
+				if (obj != null) {
+					i += 1;
+					System.out.printf(i + ": %s, %s\n", obj.getName(),
+					obj.getMail());
 				}
 			}
+		}
+		else {
+			System.out.println("Ok, thank you for contacting us!");
 		}
 		
 		sc.close();
