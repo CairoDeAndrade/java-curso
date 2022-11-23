@@ -38,7 +38,7 @@ public class Employee {
 		return "Employee id=" + id + ", name=" + name + ", wage=" + wage;
 	}
 
-	public void increaseWage(Integer increasePercentage) {
-		wage *= (increasePercentage / 100);
+	public void increaseWage(Double percentage) {
+		wage += wage * (percentage / 100.0);
 	}
 }
