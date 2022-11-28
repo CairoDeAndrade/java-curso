@@ -1,53 +1,55 @@
 package entities;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import entities.enums.OrderStatus;
 
 public class Order {
-	private Date moment;
+	private LocalDate moment;
 	private OrderStatus status;
-	private List<OrderItem> orderList = new ArrayList<>();
+	private Client client;
+	private List<OrderItem> itemsList = new ArrayList<>();
 	
 	public Order() {
 	}
 	
-	public Order(Date moment, OrderStatus status) {
+	public Order(LocalDate moment, OrderStatus status, Client client) {
 		this.moment = moment;
 		this.status = status;
+		this.client = client;
 	}
 
-	public Date getMoment() {
+	public LocalDate getMoment() {
 		return moment;
 	}
 
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
+	
 	public OrderStatus getStatus() {
 		return status;
 	}
-	
+
 	public void addItem(OrderItem item) {
-		orderList.add(item);
+		itemsList.add(item);
 	}
 	
 	public void removeItem(OrderItem item) {
-		orderList.remove(item);
+		itemsList.remove(item);
 	}
 	
-	public Double total(List<OrderItem> orderList){
-		Double total = 0.0;
-		for (OrderItem item : orderList) {
-			total += item.getPrice();
+	public Double total() {
+		double sum = 0.0;
+		for (OrderItem item : itemsList) {
+			sum += item.getQuantity() * item.getProduct().getPrice();
 		}
-		return total;
+		return sum;
 	}
 }
-
-
-
-
-
-
-
-
