@@ -2,9 +2,7 @@ package application;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -38,7 +36,9 @@ public class Program {
 		System.out.print("Status: ");
 		String status = sc.next();
 		
-		Order order = new Order(LocalDate.now(), OrderStatus.valueOf(status), client);
+		Product product = new Product();
+		OrderItem item = new OrderItem();
+		Order order = new Order(new Date(), OrderStatus.valueOf(status), client);
 		
 		System.out.println("How many items to this order?");
 		Integer itemsQuantity = sc.nextInt();
@@ -54,25 +54,13 @@ public class Program {
 			System.out.printf("\nQuantity: ");
 			Integer quantity = sc.nextInt();
 			
-			Product product = new Product(productName, productPrice);
-			OrderItem item = new OrderItem(quantity, product);
+			product = new Product(productName, productPrice);
+			item = new OrderItem(quantity, product);
 			order.addItem(item);
 		}
 				
 		System.out.println("ORDER SUMMARY:");
-		System.out.printf("Order moment: %s\n", order.getMoment());
-		System.out.printf("Order status: %s\n", order.getStatus());
-		System.out.printf("\n%s\n", client.toString());
-		
-		System.out.println("Order items:");
-		for (int i = 0; i < order.; i++) {
-			System.out.println(itemsList.get(i).getProduct().getName()
-					+ ", Quantity: "
-					+ itemsList.get(i).getQuantity()
-					+ ", Subtotal: $ " + itemsList.get(i).subTotal());
-		}
-		
-		System.out.println("Total price: $ " + order.total());
+		System.out.println(order);
 		
 		sc.close();
 	}
