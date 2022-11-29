@@ -1,5 +1,5 @@
 # Curso de Java completo
-Este projeto contém assuntos estudados no curso de Java na Udemy.
+Este projeto contém assuntos estudados no curso de Java com o professor Nelio Alves - Udemy.
 
 ##
 - Informações do curso:
