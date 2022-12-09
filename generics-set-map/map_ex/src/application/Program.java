@@ -1,52 +1,53 @@
 package application;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Locale;
+import java.text.ParseException;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-import entities.Candidate;
-
 public class Program {
 
-	public static void main(String[] args) {
-		Locale.setDefault(Locale.US);
+	public static void main(String[] args) throws ParseException {
+
 		Scanner sc = new Scanner(System.in);
-		
-		Map<Candidate, Integer> canditadesMap = new HashMap<>();
-		
+
+		Map<String, Integer> votes = new LinkedHashMap<>();
+
 		System.out.print("Enter file full path: ");
-		String path = sc.next();
-		
-		try (BufferedReader br = new BufferedReader(new FileReader(path))){
-			String item = br.readLine();
-			
-			while (item != null) {
-				String[] fields = item.split(",");
-				
-				Candidate candidate = new Candidate(fields[0], Integer.parseInt(fields[1]));
-				canditadesMap.put(candidate, candidate.getNumberOfVotes());
+		String path = sc.nextLine();
+
+		try (BufferedReader br = new BufferedReader(new FileReader(path))) {
+
+			String line = br.readLine();
+			while (line != null) {
+
+				String[] fields = line.split(",");
+				String name = fields[0];
+				int count = Integer.parseInt(fields[1]);
+
+				if (votes.containsKey(name)) {
+					int votesSoFar = votes.get(name);
+					votes.put(name, count + votesSoFar);
+				} 
+				else {
+					votes.put(name, count);
+				}
+
+				line = br.readLine();
 			}
-			
-			for (Candidate candidate : canditadesMap.keySet()) {
-				System.out.println(candidate.getName() + ": "  + canditadesMap.get(candidate));
+
+			for (String key : votes.keySet()) {
+				System.out.println(key + ": " + votes.get(key));
 			}
-			
-		} 
-		catch (FileNotFoundException e) {
-			System.out.println("Error: " + e.getMessage());
+
 		} 
 		catch (IOException e) {
 			System.out.println("Error: " + e.getMessage());
 		}
-		finally {
-			sc.close();
-		}
-		
-	}
 
+		sc.close();
+	}
 }
